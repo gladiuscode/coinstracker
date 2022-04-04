@@ -1,6 +1,8 @@
 import axios, {AxiosRequestConfig, AxiosResponse} from 'axios';
 
-const instance = axios.create();
+const instance = axios.create({
+  baseURL: 'https://api.coingecko.com/api/v3/',
+});
 
 const initInstanceDefaults = () => {
   instance.defaults.headers.common = {
