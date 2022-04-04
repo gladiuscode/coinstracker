@@ -1,5 +1,5 @@
-import React, {useCallback} from 'react';
-import {Text, TouchableOpacity} from 'react-native';
+import React from 'react';
+import {Text} from 'react-native';
 import {
   MainStackScreenProps,
   Screens,
@@ -11,24 +11,15 @@ import {useLocalization} from '../../../localization/hooks/useLocalization';
 
 type Props = MainStackScreenProps<Screens.home>;
 
-export const Home: React.FC<Props> = ({navigation}) => {
+export const Home: React.FC<Props> = ({}) => {
   const {t} = useLocalization();
   const {styles} = useStyles(homeStyles);
-
-  // ** CALLBACKS ** //
-  const onPress = useCallback(
-    () => navigation.navigate(Screens.detail),
-    [navigation],
-  );
 
   return (
     <SafeAreaView style={styles.container}>
       <Text style={[styles.title, styles.marginBottom]}>
         {t('react_native_template')}
       </Text>
-      <TouchableOpacity onPress={onPress}>
-        <Text style={styles.title}>{t('go_to_detail')}</Text>
-      </TouchableOpacity>
     </SafeAreaView>
   );
 };

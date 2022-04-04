@@ -5,7 +5,6 @@ import {
 } from '@react-navigation/native-stack';
 import {MainStackParams, Screens} from '../navigation.types';
 import Home from '../../ui/screens/home/home.screen';
-import Detail from '../../ui/screens/detail/detail.screen';
 
 const Stack = createNativeStackNavigator<MainStackParams>();
 
@@ -17,7 +16,6 @@ const MainStack = () => {
   return (
     <Stack.Navigator screenOptions={screenOptions}>
       <Stack.Screen name={Screens.home} component={Home} />
-      <Stack.Screen name={Screens.detail} component={Detail} />
     </Stack.Navigator>
   );
 };
