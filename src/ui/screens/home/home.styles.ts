@@ -6,8 +6,14 @@ const styles = ({colors, fonts}: StylesProviderValue) =>
     container: {
       flex: 1,
       backgroundColor: colors.backgroundColor,
-      justifyContent: 'center',
-      alignItems: 'center',
+      paddingHorizontal: 20,
+    },
+    titleContainer: {
+      marginTop: 12,
+    },
+    settingsIcon: {
+      width: 30,
+      resizeMode: 'contain',
     },
     title: fonts.headingOne,
     marginBottom: {
