@@ -1,4 +1,4 @@
-import React, {useCallback} from 'react';
+import React, {useCallback, useMemo} from 'react';
 import {
   FlatList,
   Image,
@@ -34,6 +34,26 @@ export const Home: React.FC<Props> = ({navigation}) => {
   }, [navigation]);
 
   // ** UI ** //
+  const ListHeaderComponent = useMemo(() => {
+    return (
+      <View style={styles.header}>
+        <TouchableOpacity onPress={onSettingsPress}>
+          <Image source={Images.ic_settings} style={styles.settingsIcon} />
+        </TouchableOpacity>
+        <View style={styles.titleContainer}>
+          <Text style={styles.title}>{t('home_title')}</Text>
+        </View>
+      </View>
+    );
+  }, [
+    onSettingsPress,
+    styles.header,
+    styles.settingsIcon,
+    styles.title,
+    styles.titleContainer,
+    t,
+  ]);
+
   const renderItem = useCallback<ListRenderItem<Coin>>(({item}) => {
     return (
       <View>
@@ -44,13 +64,12 @@ export const Home: React.FC<Props> = ({navigation}) => {
 
   return (
     <SafeAreaView style={styles.container}>
-      <TouchableOpacity onPress={onSettingsPress}>
-        <Image source={Images.ic_settings} style={styles.settingsIcon} />
-      </TouchableOpacity>
-      <View style={styles.titleContainer}>
-        <Text style={styles.title}>{t('home_title')}</Text>
-      </View>
-      <FlatList data={coinsState} renderItem={renderItem} />
+      <FlatList
+        bounces={false}
+        data={coinsState}
+        ListHeaderComponent={ListHeaderComponent}
+        renderItem={renderItem}
+      />
     </SafeAreaView>
   );
 };

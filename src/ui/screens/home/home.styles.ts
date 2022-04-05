@@ -8,6 +8,9 @@ const styles = ({colors, fonts}: StylesProviderValue) =>
       backgroundColor: colors.backgroundColor,
       paddingHorizontal: 20,
     },
+    header: {
+      marginBottom: 12,
+    },
     titleContainer: {
       marginTop: 12,
     },
