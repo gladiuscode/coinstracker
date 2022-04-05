@@ -17,8 +17,8 @@ const CoinBar = memo<Props>(({item, onFavouritePress}) => {
   const {styles} = useStyles(coinBarStyles);
 
   const onLocalFavouritePress = useCallback(() => {
-    onFavouritePress('fake-id');
-  }, [onFavouritePress]);
+    onFavouritePress(item.id);
+  }, [item.id, onFavouritePress]);
 
   return (
     <View style={styles.container}>
