@@ -9,4 +9,8 @@ export const getFontsBy = (colors: DefaultColors) =>
       fontSize: 21,
       color: colors.primaryText,
     },
+    boldedBody: {
+      fontSize: 16,
+      fontWeight: 'bold',
+    },
   });

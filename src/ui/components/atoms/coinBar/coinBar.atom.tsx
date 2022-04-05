@@ -3,11 +3,17 @@ import {View, Text, TouchableOpacity, Image} from 'react-native';
 import {useStyles} from '../../../../styles/hooks/useStyles.hook';
 import coinBarStyles from './coinBar.styles';
 import {Images} from '../../../../assets/images';
+import {Coin} from '../../../../store/coins/coins.atom';
+import {useRecoilValue} from 'recoil';
+import suspendable from '../../../../store/helpers/suspendable/suspendable.helper';
+import {coinDetail} from '../../../../store/coinDetail/coinDetail.atomFamily';
 
 interface Props {
+  readonly item: Coin;
   readonly onFavouritePress: (id: string) => void;
 }
-const CoinBar = memo<Props>(({onFavouritePress}) => {
+const CoinBar = memo<Props>(({item, onFavouritePress}) => {
+  const detail = useRecoilValue(coinDetail(item.id));
   const {styles} = useStyles(coinBarStyles);
 
   const onLocalFavouritePress = useCallback(() => {
@@ -17,9 +23,9 @@ const CoinBar = memo<Props>(({onFavouritePress}) => {
   return (
     <View style={styles.container}>
       <View style={styles.textContainer}>
-        <Text style={styles.text}>Symbol</Text>
-        <Text style={styles.text}>Name</Text>
-        <Text style={styles.text}>Price</Text>
+        <Text style={styles.symbol}>{item.symbol}</Text>
+        <Text style={styles.name}>{item.name}</Text>
+        <Text style={styles.price}>{detail.usd}</Text>
       </View>
       <View style={styles.favouriteIconContainer}>
         <TouchableOpacity onPress={onLocalFavouritePress}>
@@ -33,4 +39,4 @@ const CoinBar = memo<Props>(({onFavouritePress}) => {
   );
 });
 
-export default CoinBar;
+export default suspendable(CoinBar);

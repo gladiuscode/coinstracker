@@ -14,8 +14,19 @@ const styles = ({theme, fonts}: StylesProviderValue) =>
       flex: 3,
       flexDirection: 'row',
       justifyContent: 'space-between',
+      alignItems: 'center',
     },
-    text: fonts.headingOne,
+    symbol: {
+      flex: 0.4,
+    },
+    name: {
+      flex: 0.6,
+    },
+    price: {
+      flex: 0.4,
+      textAlign: 'right',
+      ...fonts.boldedBody,
+    },
     favouriteIconContainer: {
       flex: 0.8,
       alignItems: 'flex-end',
