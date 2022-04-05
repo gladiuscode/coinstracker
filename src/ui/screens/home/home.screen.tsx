@@ -19,6 +19,7 @@ import {Coin, coinsAtom} from '../../../store/coins/coins.atom';
 import {useRecoilValue} from 'recoil';
 import suspendable from '../../../store/helpers/suspendable/suspendable.helper';
 import {SafeAreaView} from 'react-native-safe-area-context';
+import CoinBar from '../../components/atoms/coinBar/coinBar.atom';
 
 type Props = MainStackScreenProps<Screens.home>;
 
@@ -28,6 +29,11 @@ export const Home: React.FC<Props> = ({navigation}) => {
   const coinsState = useRecoilValue(coinsAtom);
 
   // ** CALLBACKS ** //
+  const onFavouritePress = useCallback((id: string) => {
+    // TODO: ON FAVOURITE PRESS
+    console.info('id: ', id);
+  }, []);
+
   const onSettingsPress = useCallback(() => {
     // TODO: NAVIGATE TO SETTINGS
     console.info('navigation: ', navigation);
@@ -54,19 +60,18 @@ export const Home: React.FC<Props> = ({navigation}) => {
     t,
   ]);
 
-  const renderItem = useCallback<ListRenderItem<Coin>>(({item}) => {
-    return (
-      <View>
-        <Text>{item.name}</Text>
-      </View>
-    );
-  }, []);
+  const renderItem = useCallback<ListRenderItem<Coin>>(
+    ({item}) => {
+      return <CoinBar item={item} onFavouritePress={onFavouritePress} />;
+    },
+    [onFavouritePress],
+  );
 
   return (
     <SafeAreaView style={styles.container}>
       <FlatList
         bounces={false}
-        data={coinsState}
+        data={coinsState.slice(0, 10)}
         ListHeaderComponent={ListHeaderComponent}
         renderItem={renderItem}
       />
