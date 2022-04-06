@@ -7,6 +7,7 @@ import {Coin} from '../../../../store/coins/coins.atom';
 import {useRecoilValue} from 'recoil';
 import suspendable from '../../../../store/helpers/suspendable/suspendable.helper';
 import {coinDetail} from '../../../../store/coinDetail/coinDetail.atomFamily';
+import BladeLoading from '../bladeLoader/bladeLoader.atom';
 
 interface Props {
   readonly item: Coin;
@@ -39,4 +40,4 @@ const CoinBar = memo<Props>(({item, onFavouritePress}) => {
   );
 });
 
-export default suspendable(CoinBar);
+export default suspendable(CoinBar, <BladeLoading />);
