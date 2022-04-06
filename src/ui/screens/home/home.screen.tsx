@@ -60,6 +60,11 @@ export const Home: React.FC<Props> = ({navigation}) => {
     t,
   ]);
 
+  const ItemSeparatorComponent = useCallback(
+    () => <View style={styles.separator} />,
+    [styles.separator],
+  );
+
   const renderItem = useCallback<ListRenderItem<Coin>>(
     ({item}) => {
       return <CoinBar item={item} onFavouritePress={onFavouritePress} />;
@@ -74,6 +79,7 @@ export const Home: React.FC<Props> = ({navigation}) => {
         data={coinsState.slice(0, 10)}
         ListHeaderComponent={ListHeaderComponent}
         renderItem={renderItem}
+        ItemSeparatorComponent={ItemSeparatorComponent}
       />
     </SafeAreaView>
   );

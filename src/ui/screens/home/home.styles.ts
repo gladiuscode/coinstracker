@@ -11,6 +11,9 @@ const styles = ({colors, fonts}: StylesProviderValue) =>
     header: {
       marginBottom: 12,
     },
+    separator: {
+      height: 5,
+    },
     titleContainer: {
       marginTop: 12,
     },
